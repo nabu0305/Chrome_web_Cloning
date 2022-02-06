@@ -4,6 +4,8 @@ const todoInput = document.querySelector("#todo-form input");
 
 const toDos = [];
 
+const TODOS_KEY = "todos";
+
 function saveTodos() {
   localStorage.setItem("todos", JSON.stringify(toDos));
 }
@@ -35,3 +37,10 @@ function DeleteTodo(event) {
 }
 
 todo_form.addEventListener("submit", handleTodoSubmit);
+
+const saveToDos = localStorage.getItem(TODOS_KEY);
+
+if (saveToDos) {
+  const parseToDos = JSON.parse(saveToDos);
+  parseToDos.forEach(paintTodo);
+}
